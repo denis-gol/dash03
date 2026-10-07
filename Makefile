@@ -14,7 +14,6 @@
 # target
 ######################################
 TARGET = dash03
-#PROJECT_DIR = /d/stmprojects/dash03
 
 
 ######################################
@@ -56,28 +55,15 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-#$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
-Src/system_stm32f4xx.c \
+Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c \
 Src/sysmem.c \
 Src/syscalls.c
 
 # ASM sources
-ASM_SOURCES = 
+ASM_SOURCES =  \
+Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f411xe.s
+
+
 
 # ASM sources
 ASMM_SOURCES = 
@@ -138,10 +124,6 @@ C_INCLUDES =  \
 -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy \
 -IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
 -IDrivers/CMSIS/Include
-#-I$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Inc \
-#-I$(PROJECT_DIR)/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy \
-#-I$(PROJECT_DIR)/Drivers/CMSIS/Device/ST/STM32F4xx/Include \
-#-I$(PROJECT_DIR)/Drivers/CMSIS/Include
 
 
 # compile gcc flags

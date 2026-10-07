@@ -44,6 +44,8 @@ UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 
+volatile uint8_t blinking_enabled = 1; // По умолчанию мигание включено
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -98,6 +100,40 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
+      // 1. Опрос кнопки USER (PC13). При нажатии функция возвращает GPIO_PIN_RESET (0)
+      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET)
+      {
+          // Небольшая задержка для защиты от дребезга контактов
+          HAL_Delay(50);
+
+          // Повторно проверяем, что кнопка всё еще нажата
+          if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET)
+          {
+              // Инвертируем флаг разрешения мигания
+              blinking_enabled = !blinking_enabled;
+
+              // Если мигание выключили, принудительно гасим светодиод, чтобы он не завис включенным
+              if (!blinking_enabled)
+              {
+                  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+              }
+
+              // Ждем, пока пользователь отпустит кнопку, чтобы не переключать режим по кругу
+              while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET)
+              {
+                  // Пустой цикл или минимальная задержка
+                  HAL_Delay(10);
+              }
+          }
+      }
+
+      // 2. Логика мигания светодиодом PA5
+      if (blinking_enabled)
+      {
+          HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+          HAL_Delay(500);
+      }
 
     /* USER CODE BEGIN 3 */
   }
